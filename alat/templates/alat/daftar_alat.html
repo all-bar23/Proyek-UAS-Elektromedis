@@ -1,0 +1,63 @@
+{% extends 'alat/base.html' %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Daftar Alat Elektromedis</h2>
+    <a href="{% url 'tambah_alat' %}" class="btn btn-success">+ Tambah Alat</a>
+</div>
+
+<!-- Menampilkan Algoritma Pencarian -->
+<form method="GET" action="" class="mb-4 d-flex">
+    <input type="text" name="q" class="form-control me-2" placeholder="Cari nama atau kode alat..." value="{{ kata_kunci }}">
+    <button type="submit" class="btn btn-primary">Cari</button>
+</form>
+
+<!-- Menampilkan Hasil Algoritma Perulangan (Ringkasan Data) -->
+<div class="row mb-4 text-center">
+    <div class="col-md-4">
+        <div class="card text-bg-success"><div class="card-body">Kondisi Baik: <b>{{ jumlah_baik }}</b></div></div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-bg-warning"><div class="card-body">Perlu Perawatan: <b>{{ jumlah_perawatan }}</b></div></div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-bg-danger"><div class="card-body">Rusak: <b>{{ jumlah_rusak }}</b></div></div>
+    </div>
+</div>
+
+<!-- Tabel Daftar Alat -->
+<div class="card shadow-sm">
+    <div class="card-body">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Kode</th>
+                    <th>Nama Alat</th>
+                    <th>Jenis</th>
+                    <th>Lokasi</th>
+                    <th>Tahun</th>
+                    <th>Kondisi</th>
+                    <th>Status Kelayakan</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for alat in daftar_alat %}
+                <tr>
+                    <td>{{ alat.kode_alat }}</td>
+                    <td>{{ alat.nama_alat }}</td>
+                    <td>{{ alat.jenis_alat }}</td>
+                    <td>{{ alat.lokasi }}</td>
+                    <td>{{ alat.tahun_pengadaan }}</td>
+                    <td>{{ alat.kondisi }}</td>
+                    <td><span class="badge bg-secondary">{{ alat.status_kelayakan }}</span></td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="7" class="text-center">Data alat belum ada atau tidak ditemukan.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'alat/base.html' %}
+
+{% block content %}
+<div class="card shadow-sm mx-auto" style="max-width: 600px;">
+    <div class="card-header bg-success text-white">
+        <h4 class="mb-0">Tambah Data Alat</h4>
+    </div>
+    <div class="card-body">
+        
+        <!-- Menampilkan Hasil Algoritma Validasi -->
+        {% if errors %}
+            <div class="alert alert-danger">
+                <ul class="mb-0">
+                    {% for error in errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        <form method="POST" action="">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label>Kode Alat</label>
+                <input type="text" name="kode_alat" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label>Nama Alat</label>
+                <input type="text" name="nama_alat" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label>Jenis Alat</label>
+                <input type="text" name="jenis_alat" class="form-control" placeholder="Contoh: Elektrokardiograf">
+            </div>
+            <div class="mb-3">
+                <label>Lokasi Alat</label>
+                <input type="text" name="lokasi" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label>Tahun Pengadaan</label>
+                <input type="number" name="tahun_pengadaan" class="form-control">
+            </div>
+            <div class="mb-4">
+                <label>Kondisi Alat</label>
+                <select name="kondisi" class="form-select">
+                    <option value="Baik">Baik</option>
+                    <option value="Perlu Perawatan">Perlu Perawatan</option>
+                    <option value="Rusak">Rusak</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-success w-100">Simpan Data</button>
+            <a href="{% url 'daftar_alat' %}" class="btn btn-outline-secondary w-100 mt-2">Batal</a>
+        </form>
+    </div>
+</div>
+{% endblock %}
