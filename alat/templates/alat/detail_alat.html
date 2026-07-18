@@ -1,0 +1,20 @@
+{% extends 'alat/base.html' %}
+{% block content %}
+<div class="card shadow-sm mx-auto" style="max-width: 600px;">
+    <div class="card-header bg-info text-white">
+        <h4 class="mb-0">Detail Alat Elektromedis</h4>
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered">
+            <tr><th>Kode Alat</th><td>{{ alat.kode_alat }}</td></tr>
+            <tr><th>Nama Alat</th><td>{{ alat.nama_alat }}</td></tr>
+            <tr><th>Jenis Alat</th><td>{{ alat.jenis_alat }}</td></tr>
+            <tr><th>Lokasi</th><td>{{ alat.lokasi }}</td></tr>
+            <tr><th>Tahun Pengadaan</th><td>{{ alat.tahun_pengadaan }}</td></tr>
+            <tr><th>Kondisi</th><td>{{ alat.kondisi }}</td></tr>
+            <tr><th>Status Kelayakan</th><td><span class="badge bg-secondary">{{ alat.status_kelayakan }}</span></td></tr>
+        </table>
+        <a href="{% url 'daftar_alat' %}" class="btn btn-outline-secondary w-100">Kembali</a>
+    </div>
+</div>
+{% endblock %}

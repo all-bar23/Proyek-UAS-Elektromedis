@@ -1,0 +1,16 @@
+{% extends 'alat/base.html' %}
+{% block content %}
+<div class="card shadow-sm mx-auto border-danger" style="max-width: 500px;">
+    <div class="card-body text-center">
+        <h4 class="text-danger mb-4">Konfirmasi Hapus Data</h4>
+        <p>Apakah Anda yakin ingin menghapus data <b>{{ alat.nama_alat }}</b> ({{ alat.kode_alat }})?</p>
+        <p class="text-muted small">Tindakan ini tidak dapat dibatalkan.</p>
+        
+        <form method="POST" action="">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger w-100 mb-2">Ya, Hapus Data</button>
+            <a href="{% url 'daftar_alat' %}" class="btn btn-outline-secondary w-100">Batal</a>
+        </form>
+    </div>
+</div>
+{% endblock %}
